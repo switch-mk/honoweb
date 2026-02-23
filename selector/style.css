@@ -1,0 +1,342 @@
+/* ============================================
+   Selector Page — テーマ選択画面
+   ============================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --text: #e8e8e8;
+  --text-muted: #888;
+  --accent: #c8a86e;
+  --radius: 12px;
+  --font: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Noto Serif JP', serif;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- Header --- */
+.header {
+  text-align: center;
+  padding: 80px 0 50px;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.header-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.header-title span {
+  display: block;
+  font-family: var(--font);
+  font-size: 0.4em;
+  color: var(--text-muted);
+  letter-spacing: 0.3em;
+  font-weight: 300;
+  margin-top: 8px;
+}
+
+.header-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* --- Theme Grid --- */
+.main {
+  padding: 60px 0 80px;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+}
+
+/* --- Theme Card --- */
+.theme-card {
+  display: block;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s ease;
+  position: relative;
+}
+
+.theme-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  color: var(--text);
+}
+
+/* --- Card Preview (Thumbnail area) --- */
+.card-preview {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-preview-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.preview-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.preview-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.preview-sub {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+}
+
+/* Theme-specific preview decorations */
+.theme-a-preview::before {
+  content: '';
+  position: absolute;
+  inset: 15px;
+  border: 1px solid rgba(212, 168, 67, 0.2);
+}
+
+.theme-b-preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 8px,
+    rgba(92, 74, 50, 0.05) 8px,
+    rgba(92, 74, 50, 0.05) 9px
+  );
+}
+
+.theme-c-preview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    #ffffff 0px,
+    #ffffff 20px,
+    #1a2744 20px,
+    #1a2744 40px
+  );
+}
+
+.theme-c-preview::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    #1a2744 0px,
+    #1a2744 20px,
+    #ffffff 20px,
+    #ffffff 40px
+  );
+}
+
+.theme-d-preview {
+  border-bottom: 3px solid #e8594f;
+}
+
+.theme-e-preview::before {
+  content: '🏮';
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.5rem;
+  animation: lanternSwing 3s ease-in-out infinite;
+}
+
+@keyframes lanternSwing {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* --- Card Body --- */
+.card-body {
+  padding: 24px;
+}
+
+.card-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.card-concept {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+  letter-spacing: 0.08em;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.card-colors {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.color-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.card-link {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: letter-spacing 0.3s ease;
+}
+
+.theme-card:hover .card-link {
+  letter-spacing: 0.12em;
+}
+
+/* --- Footer --- */
+.selector-footer {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.selector-footer p {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .header {
+    padding: 50px 0 40px;
+  }
+
+  .theme-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .card-preview {
+    height: 170px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .theme-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Animations --- */
+.theme-card {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: cardAppear 0.6s ease forwards;
+}
+
+.theme-card:nth-child(1) { animation-delay: 0.1s; }
+.theme-card:nth-child(2) { animation-delay: 0.2s; }
+.theme-card:nth-child(3) { animation-delay: 0.3s; }
+.theme-card:nth-child(4) { animation-delay: 0.4s; }
+.theme-card:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes cardAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

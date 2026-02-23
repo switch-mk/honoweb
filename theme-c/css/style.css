@@ -1,0 +1,1294 @@
+/* ============================================
+   Theme C: 粋なダーク — 紺×白
+   呑み処 穂乃家
+   江戸前の粋。暖簾モチーフ・和柄パターン
+   ============================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --kon: #1a2744;
+  --kon-deep: #111d33;
+  --kon-light: #243555;
+  --white: #ffffff;
+  --white-off: #f0f0ec;
+  --karashi: #c8a86e;
+  --karashi-light: #dbc38e;
+  --karashi-dark: #a88b4e;
+  --text: #ffffff;
+  --text-muted: #8e9bb5;
+  --text-on-white: #1a2744;
+  --font-mincho: 'Shippori Mincho', serif;
+  --font-sans: 'Noto Sans JP', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--kon);
+  color: var(--text);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--karashi);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--karashi-light);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============================================
+   和柄パターン（青海波 — seigaiha wave）
+   CSSグラデーションで再現
+   ============================================ */
+.wagara-bg {
+  position: relative;
+}
+
+.wagara-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    radial-gradient(circle at 50% 100%, transparent 60%, var(--white) 60%, var(--white) 62%, transparent 62%),
+    radial-gradient(circle at 50% 100%, transparent 55%, var(--white) 55%, var(--white) 57%, transparent 57%);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   縦ストライプ装飾
+   ============================================ */
+.tate-stripe {
+  position: relative;
+}
+
+.tate-stripe::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 59px,
+    rgba(255, 255, 255, 0.03) 59px,
+    rgba(255, 255, 255, 0.03) 60px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   固定CTA（モバイル電話ボタン）
+   ============================================ */
+.fixed-cta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--karashi);
+  color: var(--kon);
+  padding: 14px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 24px rgba(200, 168, 110, 0.45);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fixed-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 32px rgba(200, 168, 110, 0.65);
+  color: var(--kon);
+}
+
+@media (min-width: 769px) {
+  .fixed-cta {
+    bottom: 30px;
+    right: 30px;
+  }
+}
+
+/* ============================================
+   ナビゲーション
+   ============================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900;
+  padding: 18px 0;
+  transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(26, 39, 68, 0.96);
+  backdrop-filter: blur(12px);
+  padding: 10px 0;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-mincho);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white) !important;
+  letter-spacing: 0.2em;
+  position: relative;
+}
+
+/* 暖簾風の上線装飾 */
+.nav-logo::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -4px;
+  right: -4px;
+  height: 2px;
+  background: var(--karashi);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+  align-items: center;
+}
+
+.nav-menu a {
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--karashi);
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--karashi);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  background: var(--white) !important;
+  color: var(--kon) !important;
+  padding: 8px 20px;
+  border-radius: 2px;
+  font-weight: 700;
+  border: none;
+}
+
+.nav-cta::after {
+  display: none !important;
+}
+
+.nav-cta:hover {
+  background: var(--karashi) !important;
+  color: var(--kon) !important;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(17, 29, 51, 0.98);
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    transition: right 0.4s ease;
+    padding: 40px;
+  }
+
+  .nav-menu.open {
+    right: 0;
+  }
+
+  .nav-menu a {
+    font-size: 1.1rem;
+  }
+
+  .nav-menu a::after {
+    display: none;
+  }
+}
+
+/* ============================================
+   Hero セクション
+   ============================================ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 39, 68, 0.55) 0%,
+    rgba(26, 39, 68, 0.75) 50%,
+    rgba(26, 39, 68, 0.95) 100%
+  );
+}
+
+/* --- 暖簾（のれん）モチーフ --- */
+.hero-noren {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.noren-panel {
+  width: 18%;
+  max-width: 160px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 39, 68, 0.9) 0%,
+    rgba(26, 39, 68, 0.7) 70%,
+    transparent 100%
+  );
+  border-bottom-left-radius: 50% 30px;
+  border-bottom-right-radius: 50% 30px;
+  position: relative;
+  animation: norenSway 4s ease-in-out infinite;
+}
+
+.noren-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--karashi);
+}
+
+/* 暖簾の縦縞模様 */
+.noren-panel::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 60%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.noren-panel:nth-child(1) { animation-delay: 0s; }
+.noren-panel:nth-child(2) { animation-delay: 0.3s; }
+.noren-panel:nth-child(3) { animation-delay: 0.6s; }
+.noren-panel:nth-child(4) { animation-delay: 0.3s; }
+.noren-panel:nth-child(5) { animation-delay: 0s; }
+
+@keyframes norenSway {
+  0%, 100% { transform: rotate(0deg) scaleY(1); }
+  25% { transform: rotate(0.5deg) scaleY(1.01); }
+  75% { transform: rotate(-0.5deg) scaleY(0.99); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-sub {
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  color: var(--karashi);
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+}
+
+.hero-title {
+  margin-bottom: 30px;
+}
+
+.hero-title-main {
+  display: block;
+  font-family: var(--font-mincho);
+  font-size: 1.1rem;
+  letter-spacing: 0.5em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.hero-title-name {
+  display: block;
+  font-family: var(--font-mincho);
+  font-size: clamp(3rem, 9vw, 6rem);
+  letter-spacing: 0.25em;
+  color: var(--white);
+  font-weight: 800;
+  line-height: 1.2;
+  position: relative;
+}
+
+/* 店名の左右に縦線装飾（粋な演出） */
+.hero-title-name::before,
+.hero-title-name::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 70%;
+  background: var(--karashi);
+  opacity: 0.5;
+}
+
+.hero-title-name::before {
+  left: -30px;
+}
+
+.hero-title-name::after {
+  right: -30px;
+}
+
+.hero-catch {
+  font-family: var(--font-mincho);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  line-height: 2;
+  color: var(--white-off);
+  margin-bottom: 40px;
+  letter-spacing: 0.2em;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-scroll span {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 50px;
+  background: var(--karashi);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ============================================
+   ボタン
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 2px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-karashi {
+  background: var(--karashi);
+  color: var(--kon);
+}
+
+.btn-karashi:hover {
+  background: var(--karashi-light);
+  color: var(--kon);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 24px rgba(200, 168, 110, 0.45);
+}
+
+.btn-outline {
+  border: 1px solid var(--white);
+  color: var(--white);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--white);
+  color: var(--kon);
+}
+
+.btn-lg {
+  padding: 16px 40px;
+  font-size: 1.05rem;
+}
+
+.btn-instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+}
+
+.btn-instagram:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(225, 48, 108, 0.4);
+}
+
+/* ============================================
+   セクション共通
+   ============================================ */
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--karashi);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: var(--font-mincho);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  letter-spacing: 0.2em;
+  color: var(--white);
+  position: relative;
+  display: inline-block;
+}
+
+/* セクションタイトルの上下装飾線 */
+.section-title::before,
+.section-title::after {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  background: var(--karashi);
+}
+
+.section-title::before {
+  width: 60px;
+  height: 1px;
+  margin-bottom: 16px;
+}
+
+.section-title::after {
+  width: 30px;
+  height: 1px;
+  margin-top: 16px;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 16px;
+}
+
+/* ============================================
+   コンセプト
+   ============================================ */
+.concept {
+  background: var(--kon);
+  overflow: hidden;
+}
+
+/* 青海波パターン背景 */
+.concept::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    radial-gradient(circle at 50% 0%, transparent 58%, var(--white) 58%, var(--white) 60%, transparent 60%),
+    radial-gradient(circle at 50% 0%, transparent 53%, var(--white) 53%, var(--white) 55%, transparent 55%);
+  background-size: 60px 30px;
+  background-position: 0 0, 30px 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.concept .container {
+  position: relative;
+  z-index: 1;
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.concept-image {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 画像に紺の縦ストライプオーバーレイ */
+.concept-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 3px,
+    rgba(26, 39, 68, 0.08) 3px,
+    rgba(26, 39, 68, 0.08) 4px
+  );
+  pointer-events: none;
+}
+
+/* 画像の角に和風の装飾 */
+.concept-image::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.concept-image img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.concept-image:hover img {
+  transform: scale(1.03);
+}
+
+.concept-text h3 {
+  font-family: var(--font-mincho);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--white);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  letter-spacing: 0.1em;
+  position: relative;
+  padding-left: 20px;
+}
+
+/* 見出し横の縦線（暖簾の紐をイメージ） */
+.concept-text h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  bottom: 5px;
+  width: 3px;
+  background: var(--karashi);
+}
+
+.concept-text p {
+  color: var(--text-muted);
+  line-height: 2;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.concept-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.feature {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.feature:hover {
+  border-color: rgba(200, 168, 110, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 角飾り（和風の隅丸） */
+.feature::before,
+.feature::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--karashi);
+  opacity: 0.4;
+}
+
+.feature::before {
+  top: 8px;
+  left: 8px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.feature::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+.feature-icon {
+  font-family: var(--font-mincho);
+  font-size: 2rem;
+  color: var(--karashi);
+  margin-bottom: 20px;
+  font-weight: 700;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid rgba(200, 168, 110, 0.3);
+  border-radius: 50%;
+}
+
+.feature h4 {
+  font-family: var(--font-mincho);
+  font-size: 1.05rem;
+  color: var(--white);
+  margin-bottom: 12px;
+  letter-spacing: 0.1em;
+}
+
+.feature p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .concept-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .concept-features {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ============================================
+   メニュー
+   ============================================ */
+.menu-section {
+  background: var(--kon-deep);
+  overflow: hidden;
+}
+
+/* 縦ストライプ背景 */
+.menu-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 79px,
+    rgba(255, 255, 255, 0.02) 79px,
+    rgba(255, 255, 255, 0.02) 80px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.menu-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 60px;
+}
+
+.menu-category {
+  margin-bottom: 10px;
+}
+
+.menu-cat-title {
+  font-family: var(--font-mincho);
+  font-size: 1.2rem;
+  color: var(--white);
+  letter-spacing: 0.2em;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+/* メニューカテゴリタイトルの下線（暖簾の裾をイメージ） */
+.menu-cat-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--karashi) 0%,
+    var(--karashi) 30%,
+    rgba(200, 168, 110, 0.2) 100%
+  );
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+.menu-name {
+  font-size: 0.92rem;
+  color: var(--white-off);
+  white-space: nowrap;
+}
+
+.menu-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
+  min-width: 20px;
+  margin-bottom: 5px;
+}
+
+.menu-price {
+  font-size: 0.92rem;
+  color: var(--karashi);
+  font-weight: 500;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+}
+
+.menu-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 60px;
+  position: relative;
+}
+
+/* 写真グリッドの外枠 */
+.menu-photo-grid::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(200, 168, 110, 0.15);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.menu-photo-grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(0.9);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.menu-photo-grid img:hover {
+  filter: brightness(1) saturate(1);
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .menu-name {
+    white-space: normal;
+    flex-shrink: 1;
+  }
+
+  .menu-photo-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .menu-photo-grid img:nth-child(3) {
+    grid-column: span 2;
+    aspect-ratio: 2/1;
+  }
+}
+
+/* ============================================
+   店舗情報
+   ============================================ */
+.info-section {
+  background: var(--kon);
+  overflow: hidden;
+}
+
+/* 麻の葉模様（CSS疑似要素） */
+.info-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  background-image:
+    linear-gradient(30deg, var(--white) 12%, transparent 12.5%, transparent 87%, var(--white) 87.5%, var(--white)),
+    linear-gradient(150deg, var(--white) 12%, transparent 12.5%, transparent 87%, var(--white) 87.5%, var(--white)),
+    linear-gradient(30deg, var(--white) 12%, transparent 12.5%, transparent 87%, var(--white) 87.5%, var(--white)),
+    linear-gradient(150deg, var(--white) 12%, transparent 12.5%, transparent 87%, var(--white) 87.5%, var(--white)),
+    linear-gradient(60deg, rgba(255,255,255,0.6) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.6) 75%, rgba(255,255,255,0.6)),
+    linear-gradient(60deg, rgba(255,255,255,0.6) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.6) 75%, rgba(255,255,255,0.6));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.info-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.info-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.info-table th,
+.info-table td {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  vertical-align: top;
+  text-align: left;
+}
+
+.info-table th {
+  font-family: var(--font-mincho);
+  font-size: 0.85rem;
+  color: var(--karashi);
+  width: 100px;
+  letter-spacing: 0.15em;
+  font-weight: 400;
+}
+
+.info-table td {
+  font-size: 0.9rem;
+  color: var(--white-off);
+}
+
+.info-tel {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white) !important;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.info-tel::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--karashi);
+  opacity: 0.5;
+}
+
+.info-cta {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.info-map {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 地図の和風枠 */
+.info-map::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--kon-light);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.info-map::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(200, 168, 110, 0.2);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.info-map iframe {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* ============================================
+   Instagram
+   ============================================ */
+.instagram-section {
+  background: var(--kon-deep);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 縦ストライプ装飾 */
+.instagram-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 119px,
+    rgba(255, 255, 255, 0.015) 119px,
+    rgba(255, 255, 255, 0.015) 120px
+  );
+  pointer-events: none;
+}
+
+.instagram-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.instagram-cta {
+  margin-top: 10px;
+}
+
+/* ============================================
+   フッター
+   ============================================ */
+.footer {
+  background: var(--kon-deep);
+  padding: 60px 0 30px;
+  position: relative;
+}
+
+/* フッター上部の暖簾モチーフ装飾線 */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--karashi) 0px,
+    var(--karashi) 80px,
+    transparent 80px,
+    transparent 86px
+  );
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  font-family: var(--font-mincho);
+  font-size: 1.4rem;
+  color: var(--white);
+  letter-spacing: 0.2em;
+  margin-bottom: 12px;
+}
+
+.footer-address,
+.footer-tel {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.footer-tel a {
+  color: var(--text-muted);
+}
+
+.footer-tel a:hover {
+  color: var(--karashi);
+}
+
+.footer-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-nav a {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  position: relative;
+}
+
+.footer-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--karashi);
+  transition: width 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--karashi);
+}
+
+.footer-nav a:hover::after {
+  width: 100%;
+}
+
+.footer-copy {
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .footer-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   スクロールアニメーション
+   ============================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 遅延アニメーション（featureカード用） */
+.fade-in:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.fade-in:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+/* ============================================
+   暖簾モチーフのセクション区切り装飾
+   ============================================ */
+.concept::after,
+.menu-section::after,
+.info-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(200, 168, 110, 0.3) 20%,
+    rgba(200, 168, 110, 0.3) 80%,
+    transparent 100%
+  );
+  z-index: 1;
+}
