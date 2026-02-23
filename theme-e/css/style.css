@@ -1018,6 +1018,21 @@ a:hover {
   white-space: nowrap;
 }
 
+/* 浜焼き短冊（特別スタイル） */
+.tanzaku-hamayaki {
+  background:
+    linear-gradient(135deg, #fff5e6 0%, #ffe4c4 100%);
+  border-left: 3px solid var(--color-lantern);
+}
+
+.tanzaku-hamayaki .tanzaku-name {
+  color: var(--color-koge);
+}
+
+.tanzaku-hamayaki .tanzaku-price {
+  color: var(--color-lantern-dark);
+}
+
 /* メニュー写真 */
 .menu-photos {
   display: grid;

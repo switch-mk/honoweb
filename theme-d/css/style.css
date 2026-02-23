@@ -955,3 +955,7 @@ img {
 .menu-grid .menu-card.fade-in:nth-child(4) {
   transition-delay: 0.3s;
 }
+
+.menu-grid .menu-card.fade-in:nth-child(5) {
+  transition-delay: 0.4s;
+}

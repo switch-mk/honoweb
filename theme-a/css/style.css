@@ -629,11 +629,6 @@ img {
   .menu-photo-grid {
     grid-template-columns: 1fr 1fr;
   }
-
-  .menu-photo-grid img:nth-child(3) {
-    grid-column: span 2;
-    aspect-ratio: 2/1;
-  }
 }
 
 /* --- Info --- */
