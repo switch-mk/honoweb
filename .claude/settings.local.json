@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.google.com)",
+      "WebFetch(domain:www.instagram.com)",
+      "WebSearch",
+      "WebFetch(domain:honoka.machipeta.site)",
+      "Bash(sort:*)",
+      "Bash(cd /c/Users/User/Documents/dev/repos/honoweb && gh api repos/switch-mk/honoweb/pages -X POST -f \"build_type=workflow\" -f \"source[branch]=main\" -f \"source[path]=/\" 2>&1 || gh api repos/switch-mk/honoweb/pages -X POST -f \"source[branch]=main\" -f \"source[path]=/\" 2>&1)",
+      "Bash(cd /c/Users/User/Documents/dev/repos/honoweb && gh api repos/switch-mk/honoweb/pages 2>&1)",
+      "Bash(cd /c/Users/User/Documents/dev/repos/honoweb && gh api repos/switch-mk/honoweb/pages -X PUT -f \"build_type=workflow\" -f \"source[branch]=main\" -f \"source[path]=/\" 2>&1)",
+      "Bash(cd /c/Users/User/Documents/dev/repos/honoweb && gh run watch --exit-status 2>&1)",
+      "Bash(cd /c/Users/User/Documents/dev/repos/honoweb && gh run watch 22304136129 --exit-status 2>&1)",
+      "Bash(cd:*)",
+      "Bash(cd /c/Users/User/Documents/dev/repos/honoweb && git reset HEAD .claude/settings.local.json && git commit -m \"$\\(cat <<'EOF'\n浜焼き推し・実写料理写真を全テーマに追加\n\n- 浜焼き画像5枚を全テーマに配置（炉端、海老蛤、焼き上がり、和牛）\n- 魚料理実写10枚追加（いくら、炙りしめ鯖、天ぷら、サンマ刺身、ローストビーフ等）\n- 全テーマのキャッチコピー・コンセプト・メニューを浜焼き推しに更新\n- メニューに浜焼きカテゴリを先頭に追加\n- メニュー写真グリッドを実写6枚に拡張\n- meta description・schema.orgに浜焼きを追加\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\" && git push 2>&1)"
+    ]
+  }
+}

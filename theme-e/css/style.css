@@ -1129,6 +1129,35 @@ a:hover {
   text-align: center;
 }
 
+.info-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.info-gaikan {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 2px solid rgba(255, 215, 0, 0.15);
+}
+
+.info-gaikan img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.gaikan-caption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-wheat);
+  margin-top: 10px;
+  font-family: var(--font-heading);
+  letter-spacing: 0.1em;
+}
+
 .info-map {
   border-radius: 8px;
   overflow: hidden;

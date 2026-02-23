@@ -1084,6 +1084,42 @@ img {
   text-align: center;
 }
 
+.info-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.info-gaikan {
+  position: relative;
+  overflow: hidden;
+}
+
+.info-gaikan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--kon-light);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.info-gaikan img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.gaikan-caption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  font-family: var(--font-mincho);
+  letter-spacing: 0.15em;
+}
+
 .info-map {
   position: relative;
   overflow: hidden;
