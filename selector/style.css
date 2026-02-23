@@ -287,11 +287,67 @@ body {
   letter-spacing: 0.12em;
 }
 
+/* --- Header Links --- */
+.header-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.instagram-link,
+.tel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid rgba(200, 168, 110, 0.3);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.instagram-link:hover,
+.tel-link:hover {
+  background: rgba(200, 168, 110, 0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* --- Footer --- */
 .selector-footer {
   text-align: center;
   padding: 30px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+  opacity: 0.7;
+}
+
+.footer-links span {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 0.8rem;
 }
 
 .selector-footer p {
