@@ -245,6 +245,19 @@ img {
   color: var(--matcha);
 }
 
+.nav-instagram {
+  display: flex;
+  align-items: center;
+  color: var(--kogecha);
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-instagram:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
 .nav-cta {
   background: var(--matcha);
   color: var(--white) !important;

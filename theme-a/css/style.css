@@ -173,6 +173,18 @@ img {
   color: var(--gold);
 }
 
+.nav-instagram {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-instagram:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
 .nav-cta {
   background: var(--gold);
   color: var(--black) !important;
